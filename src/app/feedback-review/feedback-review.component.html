@@ -1,0 +1,89 @@
+<div>
+    <header>
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+              <span>Mobile phone usage tracker</span>
+              <span class="example-spacer"></span>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </header>
+
+    <section>
+        <p class='fmessage'></p>
+    </section>
+
+    <section>
+        <div>
+            <mat-card class="form-card">
+                <div class="form-inputs">
+                    <form #feedbackForm="ngForm" (ngSubmit)='onSubmit(feedbackForm)'>  
+                            <mat-form-field class="form-comp">
+                              <mat-label>Username Name</mat-label>
+                              <input matInput name="username" #username="ngModel" [(ngModel)]=feedbackService.selectFeedback.username placeholder="Enter username" required>
+                            </mat-form-field>
+
+                            <mat-form-field class="form-comp">
+                                <mat-label>Time in hours </mat-label>
+                                <input matInput name="eventname" #eventname="ngModel" [(ngModel)]=feedbackService.selectFeedback.eventname placeholder="Enter time you accessed phone in a day" required>
+                              </mat-form-field>
+                          
+                            <mat-form-field class="form-comp">
+                              <mat-label>Date</mat-label>
+                              <textarea matInput name="eventreview" #eventreview="ngModel" [(ngModel)]=feedbackService.selectFeedback.eventreview placeholder="Use 'Day/Months/year format'" required></textarea>
+                            </mat-form-field>  
+                            
+                            <mat-form-field class="form-comp">
+                                <mat-label>Mood</mat-label>
+                                <textarea matInput name="eventmood" #eventreview="ngModel" [(ngModel)]=feedbackService.selectFeedback.eventmood placeholder="Average/Bad/Good" required></textarea>
+                              </mat-form-field> 
+
+                            <div class="btn-container">
+                                <div class="btn-cls">
+                                    <button mat-raised-button type="submit" color="primary" >Submit</button>
+                                </div>
+                                <div class="btn-cls">
+                                    <button mat-raised-button type="button" color="primary" (click)="resetForm(feedbackForm)">Reset</button>
+                                </div>
+                              
+                                
+                            </div>
+                            
+                       
+                    </form>
+                </div>
+            </mat-card>
+        </div>
+    </section>
+    <br>
+    <hr>
+    <section>
+        <h1>Records</h1>
+        <div class="review-section">
+            <mat-card class="review-card" *ngFor="let feedback of feedbackService.feedbacks">
+                <mat-card-header>
+                  <mat-card-title>User Name - {{feedback.username}}</mat-card-title>
+                  <mat-card-subtitle>Time - {{feedback.eventname}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>  Date -
+                    {{feedback.eventreview}}
+                  </p>
+                  <p>  Mood -
+                    {{feedback.eventmood}}
+                  </p>
+                </mat-card-content>
+              </mat-card>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer">
+            <mat-card>
+                <h4>Created by Aranya Jha</h4>
+            </mat-card>
+        </div>
+        
+    </footer>
+
+</div>
